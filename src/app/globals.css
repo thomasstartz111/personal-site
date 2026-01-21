@@ -62,28 +62,47 @@ button:focus-visible {
   border-radius: 2px;
 }
 
-/* Prose (MDX content) styling - !important to override Tailwind prose defaults */
-.prose {
+/* Prose (MDX content) styling */
+.prose,
+.prose * {
   font-family: var(--font-sans), system-ui, sans-serif;
-  color: #3f3f46 !important; /* zinc-700 */
+}
+
+.prose {
+  --tw-prose-body: #3f3f46 !important;
+  --tw-prose-headings: #18181b !important;
+  --tw-prose-links: #1565c0 !important;
+  --tw-prose-bold: #27272a !important;
+  --tw-prose-code: #3f3f46 !important;
+  color: #3f3f46 !important;
 }
 
 .prose p,
 .prose li,
 .prose td,
-.prose th {
-  color: #3f3f46 !important; /* zinc-700 */
+.prose th,
+.prose span {
+  color: #3f3f46 !important;
 }
 
 .prose h1,
 .prose h2,
 .prose h3,
 .prose h4 {
-  color: #18181b !important; /* zinc-900 */
+  color: #18181b !important;
 }
 
 .prose strong {
-  color: #27272a !important; /* zinc-800 */
+  color: #27272a !important;
+}
+
+.prose a {
+  color: #1565c0 !important;
+  text-decoration: underline;
+}
+
+.prose a:hover {
+  color: #0d47a1 !important;
 }
 
 .prose code {
