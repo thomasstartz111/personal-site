@@ -21,60 +21,58 @@ export default function WritingPage() {
       {posts.length === 0 ? (
         <p className="text-zinc-400 font-mono text-sm">No posts yet.</p>
       ) : (
-        <div className="border border-zinc-200 p-6">
-          <ul className="divide-y divide-zinc-200">
-            {posts.map((post) => (
-              <li key={post.slug}>
-                {post.href ? (
-                  <a
-                    href={post.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group block py-5 first:pt-0 last:pb-0"
-                  >
-                    <article>
-                      <div className="flex items-baseline justify-between gap-4">
-                        <h2 className="text-lg font-medium text-zinc-900 group-hover:text-[#1565c0] transition-colors">
-                          {post.title}
-                          <span className="text-zinc-400 text-sm ml-2">↗</span>
-                        </h2>
-                        <time className="text-zinc-400 text-sm font-mono shrink-0">
-                          {post.date}
-                        </time>
-                      </div>
-                      {post.description && (
-                        <p className="text-zinc-500 text-sm mt-1">
-                          {post.description}
-                        </p>
-                      )}
-                    </article>
-                  </a>
-                ) : (
-                  <Link
-                    href={`/writing/${post.slug}`}
-                    className="group block py-5 first:pt-0 last:pb-0"
-                  >
-                    <article>
-                      <div className="flex items-baseline justify-between gap-4">
-                        <h2 className="text-lg font-medium text-zinc-900 group-hover:text-[#1565c0] transition-colors">
-                          {post.title}
-                        </h2>
-                        <time className="text-zinc-400 text-sm font-mono shrink-0">
-                          {post.date}
-                        </time>
-                      </div>
-                      {post.description && (
-                        <p className="text-zinc-500 text-sm mt-1">
-                          {post.description}
-                        </p>
-                      )}
-                    </article>
-                  </Link>
-                )}
-              </li>
-            ))}
-          </ul>
-        </div>
+        <ul className="space-y-8">
+          {posts.map((post) => (
+            <li key={post.slug} className="border border-zinc-200 p-6">
+              {post.href ? (
+                <a
+                  href={post.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block focus:outline-none focus:ring-2 focus:ring-zinc-400 rounded"
+                >
+                  <article>
+                    <div className="flex items-center gap-3 mb-2">
+                      <h2 className="text-lg font-medium text-zinc-900 group-hover:text-[#1565c0] transition-colors">
+                        {post.title}
+                      </h2>
+                      <span className="text-zinc-400 text-sm">↗</span>
+                      <span className="text-xs font-mono text-zinc-400">
+                        {post.date}
+                      </span>
+                    </div>
+                    {post.description && (
+                      <p className="text-zinc-500">
+                        {post.description}
+                      </p>
+                    )}
+                  </article>
+                </a>
+              ) : (
+                <Link
+                  href={`/writing/${post.slug}`}
+                  className="group block focus:outline-none focus:ring-2 focus:ring-zinc-400 rounded"
+                >
+                  <article>
+                    <div className="flex items-center gap-3 mb-2">
+                      <h2 className="text-lg font-medium text-zinc-900 group-hover:text-[#1565c0] transition-colors">
+                        {post.title}
+                      </h2>
+                      <span className="text-xs font-mono text-zinc-400">
+                        {post.date}
+                      </span>
+                    </div>
+                    {post.description && (
+                      <p className="text-zinc-500">
+                        {post.description}
+                      </p>
+                    )}
+                  </article>
+                </Link>
+              )}
+            </li>
+          ))}
+        </ul>
       )}
     </div>
   );

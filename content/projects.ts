@@ -16,4 +16,11 @@ export const projects: Project[] = [
     date: "Nov 2025",
     video: "/daisy-demo.mp4",
   },
+  {
+    title: "Polymarket Arbitrage Research",
+    href: "https://github.com/thomasstartz111/polymarket-arb-research",
+    description: "Can you find exploitable inefficiencies in prediction markets? I scanned 51K snapshots across 3,335 markets. Short answer: No.",
+    status: "Archived",
+    date: "Jan 2026",
+  },
 ];

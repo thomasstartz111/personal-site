@@ -62,9 +62,28 @@ button:focus-visible {
   border-radius: 2px;
 }
 
-/* Prose (MDX content) font override */
+/* Prose (MDX content) styling */
 .prose {
   font-family: var(--font-sans), system-ui, sans-serif;
+  color: #3f3f46; /* zinc-700 */
+}
+
+.prose p,
+.prose li,
+.prose td,
+.prose th {
+  color: #3f3f46; /* zinc-700 */
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  color: #18181b; /* zinc-900 */
+}
+
+.prose strong {
+  color: #27272a; /* zinc-800 */
 }
 
 .prose code {

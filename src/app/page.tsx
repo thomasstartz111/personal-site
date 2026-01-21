@@ -155,7 +155,7 @@ export default function Home() {
             href="/projects"
             className="inline-block mt-4 text-sm text-zinc-500 hover:text-zinc-900 transition-colors"
           >
-            View all &rarr;
+            All projects &rarr;
           </Link>
         </section>
 
@@ -180,7 +180,7 @@ export default function Home() {
             <p className="text-zinc-400">No posts yet.</p>
           ) : (
             <div className="border border-zinc-200 p-6">
-              <ul className="divide-y divide-zinc-100">
+              <ul className="space-y-6">
                 {posts.map((post) => (
                   <li key={post.slug}>
                     {post.href ? (
@@ -188,31 +188,37 @@ export default function Home() {
                         href={post.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group block py-4 first:pt-0 last:pb-0"
+                        className="group block"
                       >
-                        <div className="flex items-baseline justify-between gap-4">
-                          <span className="text-zinc-900 group-hover:text-[#1565c0] transition-colors">
+                        <div className="flex items-center gap-3 mb-1">
+                          <span className="text-zinc-900 font-medium group-hover:text-[#1565c0] transition-colors">
                             {post.title}
-                            <span className="text-zinc-400 text-xs ml-2">↗</span>
                           </span>
-                          <time className="text-zinc-400 text-xs font-mono shrink-0">
+                          <span className="text-zinc-400 text-xs">↗</span>
+                          <time className="text-xs font-mono text-zinc-400 shrink-0 whitespace-nowrap">
                             {post.date}
                           </time>
                         </div>
+                        {post.description && (
+                          <p className="text-zinc-500 text-sm">{post.description}</p>
+                        )}
                       </a>
                     ) : (
                       <Link
                         href={`/writing/${post.slug}`}
-                        className="group block py-4 first:pt-0 last:pb-0"
+                        className="group block"
                       >
-                        <div className="flex items-baseline justify-between gap-4">
-                          <span className="text-zinc-900 group-hover:text-[#1565c0] transition-colors">
+                        <div className="flex items-center gap-3 mb-1">
+                          <span className="text-zinc-900 font-medium group-hover:text-[#1565c0] transition-colors">
                             {post.title}
                           </span>
-                          <time className="text-zinc-400 text-xs font-mono shrink-0">
+                          <time className="text-xs font-mono text-zinc-400 shrink-0 whitespace-nowrap">
                             {post.date}
                           </time>
                         </div>
+                        {post.description && (
+                          <p className="text-zinc-500 text-sm">{post.description}</p>
+                        )}
                       </Link>
                     )}
                   </li>

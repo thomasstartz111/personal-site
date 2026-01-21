@@ -45,16 +45,22 @@ export default function ProjectsPage() {
               </article>
             </a>
             {project.video && (
-              <div className="mt-4" id={`${project.title.toLowerCase().replace(/\s+/g, "-")}-demo`}>
-                <video
-                  src={project.video}
-                  controls
-                  className="w-full rounded border border-zinc-200"
-                  preload="metadata"
-                >
-                  Your browser does not support the video tag.
-                </video>
-              </div>
+              <details className="mt-4 group" id={`${project.title.toLowerCase().replace(/\s+/g, "-")}-demo`}>
+                <summary className="cursor-pointer text-sm font-mono text-zinc-500 hover:text-zinc-700 transition-colors list-none flex items-center gap-2">
+                  <span className="text-zinc-400 group-open:rotate-90 transition-transform">▶</span>
+                  Watch demo
+                </summary>
+                <div className="mt-3">
+                  <video
+                    src={project.video}
+                    controls
+                    className="w-full rounded border border-zinc-200"
+                    preload="metadata"
+                  >
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              </details>
             )}
           </li>
         ))}

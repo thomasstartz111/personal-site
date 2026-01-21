@@ -44,7 +44,7 @@ export default async function PostPage({ params }: Props) {
         )}
       </header>
       <hr className="border-zinc-200" />
-      <div className="p-6 prose prose-zinc max-w-none prose-headings:font-semibold prose-a:text-zinc-900 prose-a:underline prose-a:underline-offset-4 hover:prose-a:text-[#1565c0]">
+      <div className="p-6 prose prose-zinc max-w-none text-zinc-700 prose-headings:text-zinc-900 prose-headings:font-semibold prose-p:text-zinc-700 prose-li:text-zinc-700 prose-strong:text-zinc-800 prose-a:text-zinc-900 prose-a:underline prose-a:underline-offset-4 hover:prose-a:text-[#1565c0]">
         <MDXRemote source={post.content} components={components} />
       </div>
     </article>
