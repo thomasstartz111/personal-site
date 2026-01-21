@@ -62,30 +62,31 @@ button:focus-visible {
   border-radius: 2px;
 }
 
-/* Prose (MDX content) styling */
+/* Prose (MDX content) styling - !important to override Tailwind prose defaults */
 .prose {
   font-family: var(--font-sans), system-ui, sans-serif;
-  color: #3f3f46; /* zinc-700 */
+  color: #3f3f46 !important; /* zinc-700 */
 }
 
 .prose p,
 .prose li,
 .prose td,
 .prose th {
-  color: #3f3f46; /* zinc-700 */
+  color: #3f3f46 !important; /* zinc-700 */
 }
 
 .prose h1,
 .prose h2,
 .prose h3,
 .prose h4 {
-  color: #18181b; /* zinc-900 */
+  color: #18181b !important; /* zinc-900 */
 }
 
 .prose strong {
-  color: #27272a; /* zinc-800 */
+  color: #27272a !important; /* zinc-800 */
 }
 
 .prose code {
   font-family: var(--font-mono), monospace;
+  color: #3f3f46 !important;
 }
