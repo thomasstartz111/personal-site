@@ -1,24 +1,30 @@
 ---
-title: "Testing Market Efficiency on Polymarket: An Empirical Analysis"
+title: "Testing Market Efficiency on Polymarket"
 date: "2026-01-21"
-description: "I scanned 51K snapshots across 3,335 prediction markets looking for arbitrage. The market is brutally efficient."
+description: "An empirical analysis of prediction market arbitrage. I scanned 51K snapshots across 3,335 markets. Short answer: I could not find any tradeable arbitrage."
 ---
 
-Prediction markets aggregate dispersed information into prices. The theory is elegant: traders with better information profit at the expense of those with worse information, pushing prices toward true probabilities. But retail markets like Polymarket—with their mix of sophisticated traders and casual participants—should exhibit exploitable inefficiencies.
+Prediction markets are supposed to be efficient. Prices aggregate dispersed information, and traders with better signals earn profits by pushing prices toward true probabilities. In theory, obvious arbitrage should not persist.
 
-I built a system to find out. Short answer: No.
+Retail markets like Polymarket feel different. They mix professionals, hobbyists, and casual bettors. That combination should create cracks.
 
-## The Hypothesis
+I built a system to look for them.
 
-My initial thesis was straightforward: Polymarket should have arbitrage opportunities that arise from three sources:
+**Short answer: I could not find any tradeable arbitrage.**
 
-1. **Complement mispricing** — Yes/No pairs that don't sum to $1.00
-2. **Cross-market inconsistencies** — Related markets that don't price logically with each other
-3. **Stale prices** — Low-attention markets that don't react quickly to new information
+## Hypothesis
 
-The first is pure arbitrage—free money if it exists. The second requires finding logical violations. The third requires speed and domain knowledge.
+I looked for inefficiencies from three sources.
 
-## Data Collection
+**First, complement mispricing.** In any binary market, Yes and No should sum to exactly $1.00. If they do not, free money exists.
+
+**Second, cross-market inconsistencies.** Related markets should obey simple logic. Multiple outcomes that exhaust a set should sum to their natural total.
+
+**Third, stale prices.** Low-attention markets should react slowly to new information.
+
+The first is pure arbitrage. The second is logical arbitrage. The third requires speed and domain knowledge.
+
+## Data
 
 Over 12.6 hours of continuous scanning:
 
@@ -28,73 +34,108 @@ Over 12.6 hours of continuous scanning:
 | Price snapshots | 51,430 |
 | WebSocket updates | ~57 per 30 seconds |
 
-The system polls the Polymarket Gamma API every 30 seconds for market metadata and prices, while a WebSocket connection to the CLOB provides real-time order book updates.
+The system polls the Polymarket Gamma API every 30 seconds for metadata and prices and maintains a live WebSocket connection to the CLOB for order book updates.
 
-## Finding 1: Complement Arbitrage Doesn't Exist
+All snapshots are stored locally and replayable.
 
-The first test was simple: for each market, check if Yes price + No price = $1.00.
+![Market efficiency over time](/efficiency-heatmap.png)
 
-**Result: 0 opportunities across 51,430 snapshots.**
+## Finding 1: Complement Arbitrage Does Not Exist
 
-Every single snapshot showed perfect pricing. The CLOB mechanism keeps complementary tokens in lockstep. This isn't surprising in hindsight—the market maker infrastructure is designed to prevent exactly this kind of arbitrage—but it eliminates the easiest edge.
+For every snapshot, I checked whether Yes + No equaled $1.00.
 
-## Finding 2: Cross-Market Relationships Are (Mostly) Efficient
+**Across all 51,430 observations, there were zero violations.**
 
-The more interesting question: do related markets misprice relative to each other?
+Every market priced perfectly.
 
-I tested two categories:
+![Price convergence analysis](/price-convergence.png)
 
-**Fed Rate Markets:** Multiple markets for different rate outcomes should sum to ~100%. The actual sum: 97.5%. Correctly priced within market-making spreads.
+In hindsight this is obvious. The CLOB infrastructure is designed to enforce this constraint. But it eliminates the simplest possible edge.
 
-**Oscar Nominations:** Best Actor nominations have 5 slots. If you sum the "Yes" prices for all nominees, you should get approximately 500%. The actual sum: 520.6%.
+## Finding 2: Cross-Market Relationships Are Efficient Within Costs
 
-The Oscar markets are 4% "overpriced" in aggregate. But Polymarket charges 2% fees, and spreads eat another 1-2%. The edge disappears after transaction costs.
+The more interesting test is whether related markets violate logical relationships.
 
-## Finding 3: Low-Attention Markets Exist But Aren't Tradeable
+Two examples:
 
-The scanner found markets with low activity—stale prices, thin books, few trades. These look like opportunities on the surface.
+| Market Type | Expected Sum | Observed Sum | Deviation |
+|-------------|--------------|--------------|-----------|
+| Fed rate outcomes | ~100% | 97.5% | -2.5% |
+| Oscar Best Actor (5 slots) | ~500% | 520.6% | +4.1% |
 
-The problem: spreads and depth.
+**Fed rate markets.** Multiple outcomes should sum to roughly 100 percent. The observed total was 97.5 percent, well within market-making spreads.
 
-Every "inefficient" market had wide spreads that eliminated any edge. You can't size positions profitably when the book has $50 of liquidity. The market makers are sophisticated—they widen spreads on illiquid markets precisely because those are the ones most likely to be mispriced.
+**Oscar nominations.** Best Actor has five slots. The sum of Yes prices across nominees should be near 500 percent. The observed total was 520.6 percent.
+
+That looks like a 4 percent overpricing. But Polymarket charges 2 percent fees and spreads consume another 1 to 2 percent. The apparent edge disappears after transaction costs.
+
+The mispricings exist, but they are smaller than friction.
+
+## Finding 3: Low-Attention Markets Are Not Tradeable
+
+The scanner surfaced thin, inactive markets with stale prices.
+
+They all shared the same problem.
+
+Wide spreads. Minimal depth. Tiny position sizes.
+
+These markets look inefficient because market makers deliberately widen spreads when uncertainty and adverse selection are highest. Even when prices are wrong, there is not enough liquidity to trade them profitably.
 
 ## Why Naive Arbitrage Fails
 
 Five factors explain the results:
 
-1. **CLOB efficiency** — Deviations get arbitraged in milliseconds by automated traders
-2. **30-second polling** — Too slow to catch fleeting opportunities
-3. **2% fees** — Kills any edge under 3 cents
-4. **Wide spreads** — Most markets have 5-10% bid-ask spreads
-5. **Low depth** — Can't size positions profitably even when mispricings exist
+1. **CLOB efficiency** corrects deviations in milliseconds
+2. **Thirty-second polling** is far too slow
+3. **Two percent fees** eliminate small edges
+4. **Wide spreads** of 5 to 10 percent on most books
+5. **Low depth** prevents meaningful sizing
 
-## Where Alpha Might Actually Exist
+The system reliably finds theoretical mispricings that are not executable.
 
-| Opportunity | Viability |
-|-------------|-----------|
+## Where Alpha Might Exist
+
+| Strategy | Viability |
+|----------|-----------|
 | Simple arbitrage | Not viable |
-| Mean reversion | Moves are usually information, not noise |
-| Cross-market arb | Marginal (fees eat the edge) |
-| Information edge | Viable if you have domain expertise |
+| Cross-market arbitrage | Marginal after fees |
+| Mean reversion | Rarely applies (moves reflect real information) |
+| Information edge | Viable with domain expertise |
 | Event trading | Viable during price discovery |
 
-The pattern is clear: the edge isn't in execution—it's in information. If you know something the market doesn't (which Oscar films have real buzz, which sports outcomes are mispriced, how a court ruling will go), you can profit. But that's true of any market.
+The conclusion is simple. **Execution is not the edge. Information is.**
 
-## Technical Architecture
+The only durable edge is domain expertise. Knowing which legal ruling will land. Which nomination has momentum. Which policy outcome is misunderstood.
 
-The system has four components:
+That is true of every market.
 
-**Scanner** polls 5,000+ markets every 30 seconds, storing snapshots in SQLite. **WebSocket** connects to `wss://ws-subscriptions-clob.polymarket.com/ws/market` for real-time order book updates. **Signal Engine** detects complement arbitrage, anchoring patterns, deadline pressure, and low-attention signals. **Backtest Framework** replays historical data with realistic fees, tracking Sharpe ratio, Sortino ratio, and max drawdown.
+## Architecture
 
-For semantic analysis, I used local embeddings (all-MiniLM-L6-v2 via transformers.js) to cluster related markets automatically. Markets about Elon Musk, Fed rate decisions, and Oscar nominations all clustered correctly without manual labeling.
+The system consists of four parts:
 
-## Conclusions
+**Scanner** polls 5,000+ markets and stores snapshots in SQLite.
 
-Polymarket is more efficient than expected. The CLOB keeps Yes + No at exactly 100.00%. Cross-market relationships are priced within transaction costs. The obvious mispricings don't exist, and the subtle ones are too small to trade profitably.
+**WebSocket listener** provides real-time order book updates from `wss://ws-subscriptions-clob.polymarket.com/ws/market`.
 
-This matches the efficient market hypothesis prediction: prediction markets aggregate information effectively, leaving little alpha for pure technical analysis. The infrastructure I built—real-time streaming, semantic clustering, backtesting—could surface opportunities. But exploiting them requires domain expertise that no scanner can provide.
+**Signal engine** flags complement violations, anchoring effects, deadline pressure, and low-attention markets.
 
-The market works as designed.
+**Backtesting framework** replays historical data with realistic fees and tracks Sharpe, Sortino, and drawdown.
+
+For market relationships, I used local embeddings with all-MiniLM-L6-v2 to cluster related markets automatically. Markets about Elon Musk, Fed policy, and Oscar nominations clustered correctly without manual labeling.
+
+## Conclusion
+
+Polymarket is more efficient than expected.
+
+Yes and No prices are always perfectly constrained. Cross-market relationships are priced within transaction costs. Apparent inefficiencies vanish once fees, spreads, and liquidity are considered.
+
+This is exactly what the efficient market hypothesis predicts. Prediction markets aggregate information effectively.
+
+The infrastructure I built works. It can scan, cluster, stream, and backtest at scale.
+
+But no scanner can replace knowing something the market does not.
+
+**The market is doing its job.**
 
 ---
 
