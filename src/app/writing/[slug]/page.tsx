@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { getAllPosts, getPostBySlug } from "@/lib/posts";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { useMDXComponents } from "../../../../mdx-components";
+import remarkGfm from "remark-gfm";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -45,7 +46,15 @@ export default async function PostPage({ params }: Props) {
       </header>
       <hr className="border-zinc-200" />
       <div className="p-6 prose max-w-none prose-headings:font-semibold">
-        <MDXRemote source={post.content} components={components} />
+        <MDXRemote
+          source={post.content}
+          components={components}
+          options={{
+            mdxOptions: {
+              remarkPlugins: [remarkGfm],
+            },
+          }}
+        />
       </div>
     </article>
   );
