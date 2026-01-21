@@ -11,9 +11,9 @@ export default function WritingPage() {
 
   return (
     <div>
-      <header className="mb-12">
-        <h1 className="text-2xl font-semibold text-zinc-900 mb-2">Writing</h1>
-        <p className="text-zinc-500">
+      <header className="mb-8">
+        <h1 className="text-xs font-mono text-zinc-400 uppercase tracking-widest mb-2">Writing</h1>
+        <p className="text-zinc-500 text-sm">
           Essays and thoughts on technology, healthcare, and building.
         </p>
       </header>
@@ -25,26 +25,52 @@ export default function WritingPage() {
           <ul className="divide-y divide-zinc-200">
             {posts.map((post) => (
               <li key={post.slug}>
-                <Link
-                  href={`/writing/${post.slug}`}
-                  className="group block py-5 first:pt-0 last:pb-0"
-                >
-                  <article>
-                    <div className="flex items-baseline justify-between gap-4">
-                      <h2 className="text-lg font-medium text-zinc-900 group-hover:text-[#1565c0] transition-colors">
-                        {post.title}
-                      </h2>
-                      <time className="text-zinc-400 text-sm font-mono shrink-0">
-                        {post.date}
-                      </time>
-                    </div>
-                    {post.description && (
-                      <p className="text-zinc-500 text-sm mt-1">
-                        {post.description}
-                      </p>
-                    )}
-                  </article>
-                </Link>
+                {post.href ? (
+                  <a
+                    href={post.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group block py-5 first:pt-0 last:pb-0"
+                  >
+                    <article>
+                      <div className="flex items-baseline justify-between gap-4">
+                        <h2 className="text-lg font-medium text-zinc-900 group-hover:text-[#1565c0] transition-colors">
+                          {post.title}
+                          <span className="text-zinc-400 text-sm ml-2">↗</span>
+                        </h2>
+                        <time className="text-zinc-400 text-sm font-mono shrink-0">
+                          {post.date}
+                        </time>
+                      </div>
+                      {post.description && (
+                        <p className="text-zinc-500 text-sm mt-1">
+                          {post.description}
+                        </p>
+                      )}
+                    </article>
+                  </a>
+                ) : (
+                  <Link
+                    href={`/writing/${post.slug}`}
+                    className="group block py-5 first:pt-0 last:pb-0"
+                  >
+                    <article>
+                      <div className="flex items-baseline justify-between gap-4">
+                        <h2 className="text-lg font-medium text-zinc-900 group-hover:text-[#1565c0] transition-colors">
+                          {post.title}
+                        </h2>
+                        <time className="text-zinc-400 text-sm font-mono shrink-0">
+                          {post.date}
+                        </time>
+                      </div>
+                      {post.description && (
+                        <p className="text-zinc-500 text-sm mt-1">
+                          {post.description}
+                        </p>
+                      )}
+                    </article>
+                  </Link>
+                )}
               </li>
             ))}
           </ul>

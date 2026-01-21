@@ -1,44 +1,41 @@
 import { Metadata } from "next";
+import { projects } from "@/../content/projects";
 
 export const metadata: Metadata = {
   title: "Projects | Thomas Startz",
   description: "Things I've built and worked on.",
 };
 
-const projects = [
-  {
-    name: "DaisyAI",
-    description: "AI-powered clinical workflow automation for healthcare.",
-    url: "https://daisyai.ai",
-    status: "Active",
-  },
-];
-
 export default function ProjectsPage() {
   return (
     <div>
-      <header className="mb-12">
-        <h1 className="text-2xl font-semibold text-zinc-900 mb-2">Projects</h1>
-        <p className="text-zinc-500">Things I&apos;ve built and worked on.</p>
+      <header className="mb-8">
+        <h1 className="text-xs font-mono text-zinc-400 uppercase tracking-widest mb-2">Projects</h1>
+        <p className="text-zinc-500 text-sm">Things I&apos;ve built and worked on.</p>
       </header>
 
       <ul className="space-y-8">
         {projects.map((project) => (
-          <li key={project.name} className="border border-zinc-200 p-6">
+          <li key={project.title} className="border border-zinc-200 p-6">
             <a
-              href={project.url}
+              href={project.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group block"
+              className="group block focus:outline-none focus:ring-2 focus:ring-zinc-400 rounded"
             >
               <article>
                 <div className="flex items-center gap-3 mb-2">
                   <h2 className="text-lg font-medium text-zinc-900 group-hover:text-[#1565c0] transition-colors">
-                    {project.name}
+                    {project.title}
                   </h2>
                   {project.status && (
                     <span className="text-xs font-mono px-2 py-0.5 border border-zinc-300 text-zinc-500">
                       {project.status}
+                    </span>
+                  )}
+                  {project.date && (
+                    <span className="text-xs font-mono text-zinc-400">
+                      {project.date}
                     </span>
                   )}
                 </div>
@@ -47,6 +44,18 @@ export default function ProjectsPage() {
                 </p>
               </article>
             </a>
+            {project.video && (
+              <div className="mt-4" id={`${project.title.toLowerCase().replace(/\s+/g, "-")}-demo`}>
+                <video
+                  src={project.video}
+                  controls
+                  className="w-full rounded border border-zinc-200"
+                  preload="metadata"
+                >
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            )}
           </li>
         ))}
       </ul>

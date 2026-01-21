@@ -10,6 +10,7 @@ export interface Post {
   date: string;
   description?: string;
   content: string;
+  href?: string;
 }
 
 export function getAllPosts(): Post[] {
@@ -32,6 +33,7 @@ export function getAllPosts(): Post[] {
         date: data.date || "",
         description: data.description || "",
         content,
+        href: data.href || undefined,
       };
     })
     .sort((a, b) => (a.date > b.date ? -1 : 1));
