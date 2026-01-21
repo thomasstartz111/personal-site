@@ -12,18 +12,19 @@ const projects = [
     url: "https://daisyai.ai",
     status: "Active",
   },
-  // Add more projects here
 ];
 
 export default function ProjectsPage() {
   return (
     <div>
-      <h1 className="text-3xl font-bold text-zinc-100 mb-2">Projects</h1>
-      <p className="text-zinc-400 mb-8">Things I&apos;ve built and worked on.</p>
+      <header className="mb-12">
+        <h1 className="text-2xl font-semibold text-zinc-900 mb-2">Projects</h1>
+        <p className="text-zinc-500">Things I&apos;ve built and worked on.</p>
+      </header>
 
-      <ul className="space-y-6">
+      <ul className="space-y-8">
         {projects.map((project) => (
-          <li key={project.name}>
+          <li key={project.name} className="border border-zinc-200 p-6">
             <a
               href={project.url}
               target="_blank"
@@ -31,17 +32,17 @@ export default function ProjectsPage() {
               className="group block"
             >
               <article>
-                <div className="flex items-center gap-3">
-                  <h2 className="text-lg font-medium text-zinc-200 group-hover:text-white transition-colors">
+                <div className="flex items-center gap-3 mb-2">
+                  <h2 className="text-lg font-medium text-zinc-900 group-hover:text-[#1565c0] transition-colors">
                     {project.name}
                   </h2>
                   {project.status && (
-                    <span className="text-xs px-2 py-0.5 bg-zinc-800 text-zinc-400 rounded">
+                    <span className="text-xs font-mono px-2 py-0.5 border border-zinc-300 text-zinc-500">
                       {project.status}
                     </span>
                   )}
                 </div>
-                <p className="text-zinc-400 text-sm mt-1">
+                <p className="text-zinc-500">
                   {project.description}
                 </p>
               </article>

@@ -34,14 +34,17 @@ export default async function PostPage({ params }: Props) {
   const components = useMDXComponents({});
 
   return (
-    <article>
-      <header className="mb-8">
-        <h1 className="text-3xl font-bold text-zinc-100 mb-2">{post.title}</h1>
+    <article className="border border-zinc-200">
+      <header className="p-6 pb-0 mb-8">
+        <h1 className="text-3xl font-semibold text-zinc-900 mb-3 leading-tight">
+          {post.title}
+        </h1>
         {post.date && (
-          <time className="text-zinc-500 text-sm">{post.date}</time>
+          <time className="text-zinc-400 text-sm font-mono">{post.date}</time>
         )}
       </header>
-      <div className="prose prose-invert max-w-none">
+      <hr className="border-zinc-200" />
+      <div className="p-6 prose prose-zinc max-w-none prose-headings:font-semibold prose-a:text-zinc-900 prose-a:underline prose-a:underline-offset-4 hover:prose-a:text-[#1565c0]">
         <MDXRemote source={post.content} components={components} />
       </div>
     </article>

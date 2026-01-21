@@ -1,72 +1,95 @@
+import Image from "next/image";
+
 export default function Home() {
   return (
-    <div className="space-y-8">
-      <section>
-        <h1 className="text-3xl font-bold text-zinc-100 mb-4">Thomas Startz</h1>
-        <p className="text-zinc-300 text-lg leading-relaxed">
-          Co-founder of{" "}
+    <div className="space-y-12">
+      <section className="flex items-start gap-6">
+        <div className="w-24 h-24 rounded-full overflow-hidden flex-shrink-0 relative">
+          <Image
+            src="/headshot.jpg"
+            alt="Thomas Startz"
+            fill
+            priority
+            className="object-cover object-[center_15%]"
+          />
+        </div>
+        <p className="text-xl text-zinc-900 leading-relaxed font-medium flex-1">
+          Founder building AI systems for healthcare operations and clinical decision support.
+        </p>
+      </section>
+
+      <hr className="border-zinc-200" />
+
+      <section className="space-y-4">
+        <p className="text-zinc-600 leading-relaxed">
+          Currently building{" "}
           <a
             href="https://daisyai.ai"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-zinc-100 underline underline-offset-4 hover:text-white transition-colors"
+            className="text-zinc-900 underline underline-offset-4 hover:text-[#1565c0] transition-colors"
           >
-            DaisyAI
+            Daisy AI
           </a>
-          . Building AI tools for healthcare.
+          , focused on automating utilization management, clinical review, and documentation workflows.
+        </p>
+        <p className="text-zinc-600 leading-relaxed">
+          I write about healthcare automation, applied AI systems, and markets.
+        </p>
+        <p className="text-zinc-500 leading-relaxed">
+          New York.
         </p>
       </section>
 
-      <section className="space-y-4">
-        <p className="text-zinc-400 leading-relaxed">
-          I work on product and engineering at DaisyAI, where we&apos;re using
-          AI to automate clinical workflows. Previously worked on [your previous
-          work]. Based in [location].
-        </p>
-      </section>
+      <hr className="border-zinc-200" />
 
-      <section className="pt-4">
-        <h2 className="text-sm font-medium text-zinc-500 uppercase tracking-wide mb-4">
+      <section>
+        <h2 className="text-xs font-mono text-zinc-400 uppercase tracking-widest mb-6">
           Connect
         </h2>
-        <ul className="space-y-2">
+        <ul className="flex flex-wrap gap-x-6 gap-y-2">
           <li>
             <a
-              href="https://twitter.com/yourhandle"
+              href="https://x.com/TBStartz"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-zinc-300 hover:text-zinc-100 transition-colors"
+              className="text-zinc-600 hover:text-zinc-900 transition-colors"
             >
               Twitter
             </a>
           </li>
           <li>
             <a
-              href="https://linkedin.com/in/yourprofile"
+              href="https://www.linkedin.com/in/thomas-startz/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-zinc-300 hover:text-zinc-100 transition-colors"
+              className="text-zinc-600 hover:text-zinc-900 transition-colors"
             >
               LinkedIn
             </a>
           </li>
           <li>
             <a
-              href="https://github.com/yourusername"
+              href="https://github.com/thomasstartz111"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-zinc-300 hover:text-zinc-100 transition-colors"
+              className="text-zinc-600 hover:text-zinc-900 transition-colors"
             >
               GitHub
             </a>
           </li>
           <li>
             <a
-              href="mailto:you@example.com"
-              className="text-zinc-300 hover:text-zinc-100 transition-colors"
+              href="https://substack.com/@tstartz"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-zinc-600 hover:text-zinc-900 transition-colors"
             >
-              Email
+              Substack
             </a>
+          </li>
+          <li>
+            <span className="text-zinc-600">hello@tstartz.com</span>
           </li>
         </ul>
       </section>
