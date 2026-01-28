@@ -9,6 +9,14 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    title: "Daisy Skill: Admission Status Review",
+    href: "https://github.com/daisyai-ai/daisy-skill-1",
+    description:
+      "Claude Code skill for evaluating hospital admission status (inpatient vs observation) against clinical evidence and payer criteria",
+    status: "Active",
+    date: "Jan 2026",
+  },
+  {
     title: "Daisy AI",
     href: "https://daisyai.ai",
     description: "Healthcare automation: utilization management, clinical review, documentation",
