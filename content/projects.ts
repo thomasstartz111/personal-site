@@ -9,6 +9,14 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    title: "Chronos Living",
+    href: "https://www.chronos.living/",
+    description:
+      "Health sovereign data model for personal health, built around owning, organizing, and using your medical information on your own terms.",
+    status: "Active",
+    date: "Mar 2026",
+  },
+  {
     title: "Daisy Skill: Admission Status Review",
     href: "https://github.com/daisyai-ai/daisy-skill-1",
     description:

@@ -14,6 +14,8 @@ export default function ProjectsPage() {
         <p className="text-zinc-500 text-sm">Things I&apos;ve built and worked on.</p>
       </header>
 
+      <hr className="border-zinc-200 mb-8" />
+
       <ul className="space-y-8">
         {projects.map((project) => (
           <li key={project.title} className="border border-zinc-200 p-6">
