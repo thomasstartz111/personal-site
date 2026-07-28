@@ -3,16 +3,25 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Thomas Startz — Founder of Daisy AI. Previously AllianceBernstein, Redesign Health, UnitedHealthcare.",
+    "Thomas Startz — Healthcare software at Qualified Health. Founder of Daisy AI.",
 };
 
 export default function AboutPage() {
   return (
     <div className="space-y-12">
-      <section className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         <div>
           <h2 className="text-xs font-mono text-zinc-400 uppercase tracking-widest mb-3">
             Now
+          </h2>
+          <p className="text-zinc-900">Qualified Health</p>
+          <p className="text-zinc-500 text-sm">Healthcare software</p>
+          <p className="text-zinc-500 text-sm">Brooklyn, NY</p>
+        </div>
+
+        <div>
+          <h2 className="text-xs font-mono text-zinc-400 uppercase tracking-widest mb-3">
+            Founded
           </h2>
           <p className="text-zinc-900">
             <a
@@ -24,7 +33,7 @@ export default function AboutPage() {
               Daisy AI
             </a>
           </p>
-          <p className="text-zinc-500 text-sm">New York</p>
+          <p className="text-zinc-500 text-sm">Founder</p>
         </div>
 
         <div>
