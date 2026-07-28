@@ -39,7 +39,7 @@ export default function Home() {
   const posts = getAllPosts().slice(0, 5);
 
   return (
-    <div className="flex flex-col md:flex-row gap-8 md:gap-20">
+    <div className="flex flex-col md:flex-row gap-8 md:gap-24">
       {/* Left sidebar - Photo + Social */}
       <aside className="md:w-52 flex-shrink-0">
         <div className="md:sticky md:top-8 space-y-6">
@@ -88,26 +88,65 @@ export default function Home() {
         {/* Bio */}
         <section className="space-y-4">
           <p className="text-lg text-zinc-700 leading-relaxed">
-            I&apos;m building{" "}
-            <a
-              href="https://daisyai.ai"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-zinc-900 underline underline-offset-4 hover:text-[#1565c0] transition-colors"
-            >
-              Daisy AI
-            </a>
-            , where I&apos;m focused on automating the operational side of healthcare. Right now
-            I&apos;m applying AI to utilization management, interoperability, and
-            healthcare workflow graphs. Before, I spent time investing in equities markets and
-            thinking about how technology reshapes industries.
+            <span className="block text-2xl sm:text-3xl leading-tight text-zinc-900 mb-4">
+              Hi, I&apos;m Thomas.
+            </span>
+            I live in Brooklyn and work on healthcare software at Qualified Health.
           </p>
           <p className="text-zinc-600 leading-relaxed">
-            I write about healthcare automation, applied AI systems, and occasionally finance and
-            markets. I&apos;m interested in how new technologies can make complex systems work better
-            for the people inside them.
+            Outside work, I tend a small but mighty garden, accumulate tools faster than I can
+            reasonably justify, and start side projects with varying degrees of completion. Some
+            are software; increasingly, they involve making things with my hands and doing things
+            that don&apos;t have measurable outcomes. This website is one of them.
           </p>
-          <p className="text-zinc-500">Based in New York.</p>
+          <p className="text-zinc-600 leading-relaxed">
+            You can browse my{" "}
+            <Link href="/projects" className="text-zinc-900 underline underline-offset-4 hover:text-[#1565c0] transition-colors">
+              projects
+            </Link>
+            , read my{" "}
+            <Link href="/writing" className="text-zinc-900 underline underline-offset-4 hover:text-[#1565c0] transition-colors">
+              writing
+            </Link>
+            , or see what else I&apos;m{" "}
+            <Link href="/now" className="text-zinc-900 underline underline-offset-4 hover:text-[#1565c0] transition-colors">
+              up to
+            </Link>
+            .
+          </p>
+        </section>
+
+        <section className="space-y-4">
+          <h2 className="text-sm sm:text-base font-medium text-zinc-700">
+            A few other things
+          </h2>
+          <p className="text-zinc-600 leading-relaxed">
+            On the subway, I&apos;m usually losing to Stockfish level 4 or working through an
+            irresponsibly long Kindle queue. Book recommendations are always welcome.
+          </p>
+          <p className="text-zinc-600 leading-relaxed">
+            I get around the city on my red vintage Fuji, run a marathon most years, and remain
+            embarrassingly bad at swimming despite spending my teenage summers lifeguarding.
+          </p>
+          <p className="text-zinc-600 leading-relaxed">
+            I still follow markets and the news more closely than is probably healthy—a habit left
+            over from my bbg terminal days. I trade options on Robinhood and occasionally convince
+            myself I&apos;ve found alpha in prediction markets on Kalshi.
+          </p>
+          <p className="text-zinc-600 leading-relaxed">
+            I&apos;m dubious about the financialization of land and believe cities should be shaped
+            more by the people who live in them than by Excel models.
+          </p>
+          <p className="text-zinc-600 leading-relaxed">
+            You can reach me at{" "}
+            <a
+              href="mailto:hello@tstartz.com"
+              className="text-zinc-900 underline underline-offset-4 hover:text-[#1565c0] transition-colors"
+            >
+              hello@tstartz.com
+            </a>
+            .
+          </p>
         </section>
 
         <hr className="border-zinc-200" />
@@ -115,11 +154,48 @@ export default function Home() {
         {/* Projects */}
         <section id="projects">
           <h2 className="text-xs font-mono text-zinc-400 uppercase tracking-widest mb-6">
-            Projects
+            Featured work
           </h2>
           <div className="border border-zinc-200 p-6">
             <ul className="space-y-6">
-              {projects.map((project) => (
+              {projects.slice(0, 2).map((project) => (
+                <li key={project.title}>
+                  <a
+                    href={project.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group block"
+                  >
+                    <div className="flex items-center gap-3 mb-1">
+                      <span className="text-zinc-900 font-medium group-hover:text-[#1565c0] transition-colors">
+                        {project.title}
+                      </span>
+                      {project.status && (
+                        <span className="text-xs font-mono text-zinc-400">
+                          {project.status}
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-zinc-500 text-sm">{project.description}</p>
+                  </a>
+                  {project.video && (
+                    <Link
+                      href={`/projects#${project.title.toLowerCase().replace(/\s+/g, "-")}-demo`}
+                      className="text-xs text-zinc-400 hover:text-[#1565c0] transition-colors mt-1 inline-block"
+                    >
+                      Watch demo &rarr;
+                    </Link>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <h2 className="mt-8 mb-4 text-xs font-mono text-zinc-400 uppercase tracking-widest">
+            Selected projects
+          </h2>
+          <div className="border border-zinc-200 p-6">
+            <ul className="space-y-6">
+              {projects.slice(2).map((project) => (
                 <li key={project.title}>
                   <a
                     href={project.href}

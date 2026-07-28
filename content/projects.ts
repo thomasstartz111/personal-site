@@ -9,6 +9,14 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    title: "Plants",
+    href: "https://plants.tstartz.com",
+    description:
+      "A botanical reference and room-light study for finding plants that fit the space you have.",
+    status: "Active",
+    date: "Jul 2026",
+  },
+  {
     title: "Chronos Living",
     href: "https://www.chronos.living/",
     description:
