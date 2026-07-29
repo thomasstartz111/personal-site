@@ -24,8 +24,8 @@ export const metadata: Metadata = {
   description:
     "Founder of Daisy AI. Building healthcare automation. Previously AllianceBernstein, Redesign Health, UnitedHealthcare. Columbia, Wharton.",
   icons: {
-    icon: "/favicon.png",
-    apple: "/favicon.png",
+    icon: "/icon.svg",
+    apple: "/icon.svg",
   },
   openGraph: {
     title: "Thomas Startz",
