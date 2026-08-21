@@ -118,7 +118,8 @@ export default function Home() {
           </h2>
           <p className="text-zinc-600 leading-relaxed">
             On the subway, I&apos;m usually losing to Stockfish level 4 or working through an
-            irresponsibly long Kindle queue. Book recommendations are always welcome.
+            irresponsibly long Kindle queue. I&apos;m always open to book recommendations or
+            interesting articles.
           </p>
           <p className="text-zinc-600 leading-relaxed">
             I get around the city on my red vintage Fuji, run a marathon most years, and remain
