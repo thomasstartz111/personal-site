@@ -132,7 +132,7 @@ export default function Home() {
           </p>
           <p className="text-zinc-600 leading-relaxed">
             I&apos;m dubious about the financialization of land and believe cities should be shaped
-            more by the people who live in them than by Excel models.
+            more by the people who live in them than by developers.
           </p>
           <p className="text-zinc-600 leading-relaxed">
             You can reach me at{" "}
