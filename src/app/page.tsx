@@ -123,7 +123,7 @@ export default function Home() {
           </p>
           <p className="text-zinc-600 leading-relaxed">
             I get around the city on my red vintage Fuji, try to run a marathon every year, and remain
-            embarrassingly bad at swimming despite spending my teenage summers lifeguarding.
+            quite bad at swimming despite spending my teenage summers lifeguarding.
           </p>
           <p className="text-zinc-600 leading-relaxed">
             I still follow markets and the news more closely than is probably healthy—a habit left
