@@ -126,7 +126,7 @@ export default function Home() {
             quite bad at swimming despite spending my teenage summers lifeguarding.
           </p>
           <p className="text-zinc-600 leading-relaxed">
-            I still follow markets and the news more closely than is probably healthy—a habit left
+            I follow markets and the news more closely than is probably healthy, a habit left
             over from my bbg terminal days. I trade options on Robinhood and occasionally convince
             myself I&apos;ve found alpha in prediction markets on Kalshi.
           </p>
