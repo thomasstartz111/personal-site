@@ -104,15 +104,11 @@ export default function Home() {
             <Link href="/projects" className="text-zinc-900 underline underline-offset-4 hover:text-[#1565c0] transition-colors">
               projects
             </Link>
-            , read my{" "}
+            {" "}and read my{" "}
             <Link href="/writing" className="text-zinc-900 underline underline-offset-4 hover:text-[#1565c0] transition-colors">
               writing
             </Link>
-            , or see what else I&apos;m{" "}
-            <Link href="/now" className="text-zinc-900 underline underline-offset-4 hover:text-[#1565c0] transition-colors">
-              up to
-            </Link>
-            .
+            {" "}here.
           </p>
         </section>
 
