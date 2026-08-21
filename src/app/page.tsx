@@ -122,7 +122,7 @@ export default function Home() {
             interesting articles.
           </p>
           <p className="text-zinc-600 leading-relaxed">
-            I get around the city on my red vintage Fuji, run a marathon most years, and remain
+            I get around the city on my red vintage Fuji, try to run a marathon every year, and remain
             embarrassingly bad at swimming despite spending my teenage summers lifeguarding.
           </p>
           <p className="text-zinc-600 leading-relaxed">
